@@ -21,3 +21,27 @@ TEST( HelloTest,  English ) {
     EXPECT_EQ( greeting.hello(), "hello" );
 }
 
+
+// 日本語であいさつ
+TEST( HelloTest,  Japanese ) {
+    // モックを作って、返したいものを入れる
+    MockHello mock_hello;	
+    EXPECT_CALL( mock_hello, say()).WillOnce( Return( "こんにちは" ) );
+
+    // テストする
+    Greeting greeting( &mock_hello );
+    EXPECT_EQ( greeting.hello(), "こんにちは" );
+}
+
+
+// 英語であいさつ(日本語で挨拶してしまった)
+TEST( HelloTest,  English_Error ) {
+    // モックを作って、返したいものを入れる
+    MockHello mock_hello;	
+    EXPECT_CALL( mock_hello, say()).WillOnce( Return( "こんにちは" ) );
+
+    // テストする
+    Greeting greeting( &mock_hello );
+    EXPECT_EQ( greeting.hello(), "hello" );
+}
+
