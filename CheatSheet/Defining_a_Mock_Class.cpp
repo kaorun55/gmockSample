@@ -3,22 +3,7 @@
 using testing::NiceMock;
 using testing::StrictMock;
 
-#include <string>
-
-// 通常のクラスに対するモックの作成
-// とあるクラス
-class Foo
-{
-public:
-
-  virtual ~Foo(){}
- 
-  virtual int GetSize() const = 0;
-  virtual std::string Describe( const char* name ) = 0;
-  virtual std::string Describe( int type ) = 0;
-  //virtual bool Proecss( Bar elem, int count ) = 0;
-  virtual bool Process( int elem, int count ) = 0;
-};
+#include "Foo.h"
 
 // とあるクラスのモック
 class MockFoo : public Foo
@@ -54,7 +39,7 @@ public:
 };
 
 
-// とある暮らすテンプレートのモック
+// とあるクラステンプレートのモック
 template< typename Elem >
 class MockStack : public StackInterface< Elem >
 {
@@ -70,3 +55,5 @@ TEST( gmockSample, Mocking_a_Class_Template )
   NiceMock< MockStack< double > > nice_mock;
   StrictMock< MockStack< int > > strict_mock;
 }
+
+
