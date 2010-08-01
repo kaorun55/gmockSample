@@ -7,6 +7,7 @@ using testing::StrictMock;
 #include "MockFoo.h"
 
 #include "StackInterface.h"
+#include "MockStack.h"
 
 // モックの実態化
 TEST( gmockSample, Mocking_a_normal_Class )
@@ -15,19 +16,7 @@ TEST( gmockSample, Mocking_a_normal_Class )
   StrictMock< MockFoo > strict_mock;
 }
 
-
-
 // クラステンプレートに対するモックの作成
-// とあるクラステンプレートのモック
-template< typename Elem >
-class MockStack : public StackInterface< Elem >
-{
-public:
-
-  MOCK_CONST_METHOD0_T( GetSize, int() );
-  MOCK_METHOD1_T( Push, void( const Elem& x ) );
-};
-
 // モックの実態化
 TEST( gmockSample, Mocking_a_Class_Template )
 {  
